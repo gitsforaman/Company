@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>S.S. Future Pvt. Ltd.</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .main-container {
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .main-container h1,
+    .main-container h2,
+    .main-container h3 {
+      margin: 10px 0;
+      animation: glowText 3s ease-in-out infinite alternate;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00;
+    }
+
+    h3 {
+      font-size: clamp(2.2em, 8vw, 3.5em);
+      font-weight: bold;
+      white-space: normal;
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 300%;
+      animation: gradientMove 5s ease infinite, glowText 3s ease-in-out infinite alternate;
+    }
+
+    .address, .contacts {
+      font-size: 1.3em;
+      margin-top: 10px;
+    }
+
+    .address {
+      color: #ccc;
+      text-shadow: 0 0 5px #000;
+    }
+
+    .contacts {
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff;
+    }
+
+    @keyframes glowText {
+      0% {
+        letter-spacing: 1px;
+        transform: scale(1);
+      }
+      100% {
+        letter-spacing: 4px;
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .note {
+      position: absolute;
+      width: 40px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    #fullscreenBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: #0ff;
+      color: #000;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 0 15px #0ff;
+      cursor: pointer;
+      z-index: 999;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <h1>JOIN US</h1>
+    <h2>For your Bright Future</h2>
+    <h3>S.S. Future Pvt. Ltd.</h3>
+    <div class="address">📍 Near Krishna Nagar Metro Station, Lucknow</div>
+    <div class="contacts">📞 6394325532 &nbsp;&nbsp; 📞 9450637077</div>
+  </div>
+
+  <button id="fullscreenBtn">🔲 Full View</button>
+
+  <script>
+    // Falling notes
+    const notes = [
+      "https://1.bp.blogspot.com/-mmpyJr-d04Y/YPu8x8-lQuI/AAAAAAAAAsk/m42pI8arOqEakwY506eAIJdngxZFPrdNwCLcBGAsYHQ/s2386/Front.jpg",
+      "https://en.numista.com/catalogue/photos/inde/6342cc5de97c65.66839766-270.jpg"
+    ];
+
+    function createNote() {
+      const note = document.createElement("img");
+      note.src = notes[Math.floor(Math.random() * notes.length)];
+      note.className = "note";
+      note.style.left = Math.random() * 100 + "vw";
+      note.style.animationDuration = 5 + Math.random() * 5 + "s";
+      note.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(note);
+      setTimeout(() => note.remove(), 10000);
+    }
+
+    setInterval(createNote, 300);
+
+    // Fullscreen button
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+    fullscreenBtn.addEventListener("click", () => {
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen();
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen();
+      } else if (docEl.msRequestFullscreen) {
+        docEl.msRequestFullscreen();
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
