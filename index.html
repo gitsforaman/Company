@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>S.S. Future Pvt. Ltd.</title>
+  <title>S.S. Samriddhi Pvt. Ltd.</title>
   <style>
     html, body {
       margin: 0;
@@ -22,38 +22,36 @@
     .main-container {
       width: 100%;
       padding: 0 10px;
+      position: relative;
     }
 
-    .main-container h1,
-    .main-container h2,
-    .main-container h3 {
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+      animation: glowLogo 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowLogo {
+      from { filter: drop-shadow(0 0 5px #0ff); }
+      to { filter: drop-shadow(0 0 15px #0ff); }
+    }
+
+    h1, h2, h3 {
       margin: 10px 0;
-      animation: glowText 3s ease-in-out infinite alternate;
-    }
-
-    h1 {
-      font-size: 1.8em;
-      color: #ff00ff;
-      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      color: #00ff00;
-      text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00;
-    }
-
-    h3 {
-      font-size: clamp(2.2em, 8vw, 3.5em);
       font-weight: bold;
-      white-space: normal;
-      background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #00ff00, #ffff00, #ff0000);
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-size: 300% 300%;
-      animation: gradientMove 5s ease infinite, glowText 3s ease-in-out infinite alternate;
+      animation: gradientMove 6s ease infinite, glowText 3s ease-in-out infinite alternate;
+      text-shadow: 0 0 5px rgba(255,255,255,0.2);
     }
+
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: clamp(2.2em, 8vw, 3.5em); }
 
     .address, .contacts {
       font-size: 1.3em;
@@ -68,6 +66,44 @@
     .contacts {
       color: #0ff;
       text-shadow: 0 0 8px #0ff;
+    }
+
+    .profiles {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: initial;
+      box-shadow: 0 0 10px #0ff;
+      margin-bottom: 8px;
+    }
+
+    .profile .name {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #ffcc00;
+      text-shadow: 0 0 5px #ff0;
+    }
+
+    .profile .designation {
+      font-size: 1em;
+      font-weight: bold;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
     }
 
     @keyframes glowText {
@@ -133,13 +169,34 @@
 <body>
 
   <div class="main-container">
-    <h1>JOIN US</h1>
-    <h2>For your Bright Future</h2>
-    <h3>S.S. Future Pvt. Ltd.</h3>
+    <!-- Logo -->
+    <img src="image/logo.jpg" alt="Logo" class="logo" />
+
+    <!-- Headings -->
+    <h1>For your Bright Future</h1>
+    <h2>JOIN US</h2>
+    <h3>S.S. Samriddhi Pvt. Ltd.</h3>
+
+    <!-- Address & Contact -->
     <div class="address">📍 Near Krishna Nagar Metro Station, Lucknow</div>
     <div class="contacts">📞 6394325532 &nbsp;&nbsp; 📞 9450637077</div>
+
+    <!-- Profile Images with Name and Designation -->
+    <div class="profiles">
+      <div class="profile">
+        <img src="image/mummy.jpg" alt="Director" />
+        <div class="name">Swati Srivastava</div>
+        <div class="designation">Director</div>
+      </div>
+      <div class="profile">
+        <img src="image/aunty.jpg" alt="Manager" />
+        <div class="name">Suman Gupta</div>
+        <div class="designation">Director</div>
+      </div>
+    </div>
   </div>
 
+  <!-- Fullscreen Button -->
   <button id="fullscreenBtn">🔲 Full View</button>
 
   <script>
@@ -153,6 +210,7 @@
       const note = document.createElement("img");
       note.src = notes[Math.floor(Math.random() * notes.length)];
       note.className = "note";
+      note.alt = "Falling note";
       note.style.left = Math.random() * 100 + "vw";
       note.style.animationDuration = 5 + Math.random() * 5 + "s";
       note.style.transform = `rotate(${Math.random() * 360}deg)`;
@@ -160,7 +218,7 @@
       setTimeout(() => note.remove(), 10000);
     }
 
-    setInterval(createNote, 300);
+    setInterval(createNote, 500);
 
     // Fullscreen button
     const fullscreenBtn = document.getElementById("fullscreenBtn");
