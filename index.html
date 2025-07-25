@@ -54,13 +54,32 @@
     h3 { font-size: clamp(2.5em, 8vw, 4em); }
     h4 { font-size: clamp(1.2em, 4vw, 2em); margin-top: 5px; }
 
+    .arrow {
+      font-size: 2.5em;
+      color: #0ff;
+      margin: 10px 0;
+      animation: bounce 2s infinite;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(8px);
+      }
+    }
+
     .address, .contacts {
       font-size: 1.3em;
       margin-top: 10px;
     }
 
     .address {
-      color: #ccc;
+      color: #eee;
+      font-size: 1.2em;
+      line-height: 1.5em;
       text-shadow: 0 0 5px #000;
     }
 
@@ -176,15 +195,16 @@
     <!-- Headings -->
     <h1>For your Bright Future</h1>
     <h2>JOIN US</h2>
+    <div class="arrow">⬇</div>
     <h3>ASIATOP FOUR PLUS</h3>
     <h4>NETGROW SOLUTIONS PVT. LTD.</h4>
 
     <!-- Address & Contact -->
     <div class="address">
-  📍 UGF-16, BRAHMAKUNJ COMPLEX<br>
-  SECTOR-B, OPPOSITE PHOENIX MALL<br>
-  KANPUR ROAD, LUCKNOW – 226012
-</div>
+      📍 UGF-16, Brahmakunj Complex<br>
+      Sector-B, Opp. Phoenix Mall<br>
+      Kanpur Road, Lucknow – 226012
+    </div>
     <div class="contacts">📞 6394325532 &nbsp;&nbsp; 📞 9450637077</div>
 
     <!-- Profile Images with Name and Designation -->
@@ -195,7 +215,7 @@
         <div class="designation">Director</div>
       </div>
       <div class="profile">
-        <img src="image/aunty.jpg" alt="Manager" />
+        <img src="image/aunty.jpg" alt="Director" />
         <div class="name">Suman Gupta</div>
         <div class="designation">Director</div>
       </div>
